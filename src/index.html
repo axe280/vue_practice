@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <form action="#" 
+            class="form-component"
+            v-if="showForm"
+            v-on:submit.prevent="showForm = false"
+          >
+            <h2>Form</h2>
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">Email</div>
+                <div class="field-item__field">
+                  <input type="text" v-model="formData.email" />
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">First Name</div>
+                <div class="field-item__field">
+                  <input type="text" v-model="formData.firstName" />
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">Last Name</div>
+                <div class="field-item__field">
+                  <input type="text" v-model="formData.lastName" />
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">phone</div>
+                <div class="field-item__field">
+                  <input type="tel" v-model="formData.phone" />
+                </div>
+              </label>
+            </div>
+
+            <div class="add-guest-bl">
+              Guests 
+              <button 
+                type="button"
+                class="btn btn_md"
+                v-on:click="onAddGuest"
+              >+</button>
+            </div>
+
+            <div class="guest-form">
+              <div class="form-group"
+                v-for="(guest, key, index) in formGuests"
+                v-bind:key="key"
+              >
+                <label class="field-item">
+                  <div
+                    class="field-item__label"
+                    v-on:dblclick="onDeleteGuest(key)"
+                  >Guest {{ index + 1 }}</div>
+                  <div class="field-item__field">
+                    <input 
+                      type="text"
+                      v-model="formGuests[key]"
+                    />
+                  </div>
+                </label>
+              </div>
+            </div>
+            <hr>
+            <br>
+            <button 
+              class="btn btn_md btn_max"
+              type="submit"
+            >Send Data</button>
+          </form>
+
+          <div class="table-component"
+            v-else
+          >
+            <h2>All done!</h2>
+            <table>
+              <tr>
+                <td>email</td>
+                <td>{{ formData.email }}</td>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>{{ fullName }}</td>
+              </tr>
+              <tr>
+                <td>phone</td>
+                <td>{{ formData.phone }}</td>
+              </tr>
+              <tr>
+                <td>guests</td>
+                <td>
+                  <table>
+                    <tr
+                      v-for="guest in formGuests"
+                    >
+                      <td>{{ guest }}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
