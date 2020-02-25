@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <form action="#"
+            v-if="showForm"
+            v-on:submit.prevent="showForm = false"
+          >
+            <div class="scroll-block"
+              v-on:scroll="scrollBlock"
+            >
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus recusandae neque ipsum optio repudiandae eaque sunt esse, sequi inventore repellendus architecto minus error hic nisi ea quasi! Recusandae debitis saepe expedita voluptatem quae necessitatibus odio eius modi a sapiente sed similique doloremque dolore quidem, voluptate odit ratione, incidunt nihil. Ullam, dignissimos necessitatibus cumque tempora culpa, architecto tenetur ab sunt error perferendis nesciunt nobis officiis laborum. Nisi sit expedita nostrum sapiente alias quas aliquam repellendus enim est minus nihil, laboriosam rerum, et accusantium quam cumque magnam quo, exercitationem debitis minima! Cupiditate incidunt facere amet animi dolor, quaerat itaque voluptatibus odit accusantium?</p>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus recusandae neque ipsum optio repudiandae eaque sunt esse, sequi inventore repellendus architecto minus error hic nisi ea quasi! Recusandae debitis saepe expedita voluptatem quae necessitatibus odio eius modi a sapiente sed similique doloremque dolore quidem, voluptate odit ratione, incidunt nihil. Ullam, dignissimos necessitatibus cumque tempora culpa, architecto tenetur ab sunt error perferendis nesciunt nobis officiis laborum. Nisi sit expedita nostrum sapiente alias quas aliquam repellendus enim est minus nihil, laboriosam rerum, et accusantium quam cumque magnam quo, exercitationem debitis minima! Cupiditate incidunt facere amet animi dolor, quaerat itaque voluptatibus odit accusantium?</p>
+            </div>
+
+            <div class="controls"
+              v-show="scrollDone"
+            >
+              <div class="form-st-checkbox">
+                <label>
+                  I agree this text
+                  <input type="checkbox"
+                    v-model="isAgreeChecked"
+                  >
+                  <span class="fake-control"></span>
+                </label>
+              </div>
+
+              <div class="form-st-checkbox">
+                <label>
+                  Send me spam
+                  <input type="checkbox"
+                    v-model="spamActivated"
+                  >
+                  <span class="fake-control"></span>
+                </label>
+              </div>
+
+              <template v-if="spamActivated">
+                <div class="form-st-radio">
+                  <label>
+                    Send me span on email
+                    <input type="radio"
+                      value="email"
+                      v-model="spamControls"
+                    >
+                    <span class="fake-control"></span>
+                  </label>
+                </div>
+  
+                <div class="form-st-radio">
+                  <label>
+                    Send me span on phone
+                    <input type="radio"
+                      value="phone"
+                      v-model="spamControls"
+                    >
+                    <span class="fake-control"></span>
+                  </label>
+                </div>
+              </template>
+
+              <button type="submit"
+                class="btn btn_md"
+                v-show="isAgreeChecked"
+              >Send data</button>
+              
+            </div>
+          </form>
+
+          <table v-else>
+            <tr>
+              <td>Agree text</td>
+              <td>{{isAgreeChecked ? 'Yes' : 'No'}}</td>
+            </tr>
+
+            <tr>
+              <td>Get spam</td>
+              <td>{{spamActivated ? 'Yes' : 'No'}}</td>
+            </tr>
+
+            <tr v-if="spamActivated">
+              <td>Span on</td>
+              <td>{{spamControls}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
