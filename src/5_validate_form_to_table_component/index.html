@@ -30,29 +30,16 @@
             v-if="showForm"
             v-on:submit.prevent="showForm = false"
           >
+          
             <h2>Form</h2>
-            <div class="form-group"
-              v-for="(item, index) in info"
-              :key="item.name"
-            >
-              <label class="field-item">
-                <div class="field-item__label">
-                  {{item.name}}
-                  <span class="fa"
-                    v-show="controls[index].activated"
-                    v-bind:class="controls[index].error
-                    ? 'fa-times-circle'
-                    : 'fa-check-circle'"
-                  ></span>
-                </div>
-                <div class="field-item__field">
-                  <input type="text"
-                    v-bind:value="item.value"
-                    v-on:input="onInput(index, $event.target.value)"
-                  >
-                </div>
-              </label>
-            </div>
+            <validate-field
+              v-for="(field, index) in info"
+              v-bind:key="field.name"
+              v-bind:name="field.name"
+              v-bind:value="field.value"
+              v-bind:pattern="field.pattern"
+              v-on:change-value="onInput(index, $event)"
+            ></validate-field>
 
             <button class="btn btn_md" 
               type="submit"
