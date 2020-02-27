@@ -19,44 +19,50 @@
       <div id="app">
         <div class="container">
           <h2>Progress bar</h2>
-            <div class="progress-bar">
-              <div class="progress-bar__inner"
-                v-bind:style="progressBarWidth"
-              ></div>
-            </div>
-
-          <form action="#" 
-            class="form-component"
-            v-if="showForm"
-            v-on:submit.prevent="showForm = false"
-          >
-          
-            <h2>Form</h2>
-            <validate-field
-              v-for="(field, index) in info"
-              v-bind:key="field.name"
-              v-bind:name="field.name"
-              v-bind:value.sync="field.value"
-              v-bind:pattern="field.pattern"
-              v-on:change-status="statusChange(index, $event)"
-            ></validate-field>
-
-            <button class="btn btn_md" 
-              type="submit"
-              v-bind:disabled="done < info.length"
-            >Send data</button>
-          </form>
-
-          <div class="table-component"
-            v-else
-          >
-            <table>
-              <tr v-for="item in info">
-                <td>{{item.name}}</td>
-                <td>{{item.value}}</td>
-              </tr>
-            </table>
+          <div class="progress-bar">
+            <div class="progress-bar__inner"
+              v-bind:style="progressBarWidth"
+            ></div>
           </div>
+          
+          <transition
+            enter-active-class="animated bounceIn"
+            leave-active-class="animated bounceOut"
+            mode="out-in"
+          >
+            <form action="#" 
+              class="form-component"
+              v-if="showForm"
+              v-on:submit.prevent="showForm = false"
+            >
+            
+              <h2>Form</h2>
+              <validate-field
+                v-for="(field, index) in info"
+                v-bind:key="field.name"
+                v-bind:name="field.name"
+                v-bind:value.sync="field.value"
+                v-bind:pattern="field.pattern"
+                v-on:change-status="statusChange(index, $event)"
+              ></validate-field>
+
+              <button class="btn btn_md" 
+                type="submit"
+                v-bind:disabled="done < info.length"
+              >Send data</button>
+            </form>
+
+            <div class="table-component"
+              v-else
+            >
+              <table>
+                <tr v-for="item in info">
+                  <td>{{item.name}}</td>
+                  <td>{{item.value}}</td>
+                </tr>
+              </table>
+            </div>
+          </transition>  
         </div>
       </div>
       

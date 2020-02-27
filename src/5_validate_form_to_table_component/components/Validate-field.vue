@@ -8,7 +8,9 @@
           v-bind:class="validClass"
         ></span>
       </div>
-      <div class="field-item__field">
+      <div class="field-item__field"
+        :class="animationError"
+      >
         <input type="text"
           v-bind:value="value"
           v-on:input="onInput"
@@ -38,6 +40,12 @@
         return this.isValid
           ? 'fa-check-circle'
           : 'fa-times-circle';
+      },
+
+      animationError() {
+        return !this.isValid 
+          ? 'animated shake' 
+          : ''
       }
     },
 
