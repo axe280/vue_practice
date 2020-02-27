@@ -16,7 +16,7 @@ const app = new Vue({
     info: [
       {
         name: 'Name',
-        value: 'Alex',
+        value: 'test',
         pattern: /^[a-zA-Z ]{2,30}$/
       },
       {
@@ -26,7 +26,7 @@ const app = new Vue({
       },
       {
         name: 'Email',
-        value: 'oo993///o:',
+        value: '',
         pattern: /[^@]+@[^@]+.[a-zA-Z]{2,6}/
       },
       {
@@ -50,6 +50,7 @@ const app = new Vue({
       this.controls.push({
         valid: item.pattern.test(item.value)
       });
+      console.log(true);
     });
   },
 
@@ -74,10 +75,8 @@ const app = new Vue({
   },
 
   methods: {
-    onInput(index, data) {
-      this.info[index].value = data.value;
-      this.controls[index].valid = data.valid;
-      // this.$set(this.controls, index, data.valid);
+    statusChange(index, status) {
+      this.controls[index].valid = status;
     }
   },
 });

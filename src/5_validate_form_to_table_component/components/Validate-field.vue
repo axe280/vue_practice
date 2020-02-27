@@ -30,8 +30,12 @@
     },
 
     computed: {
-      validClass() {
+      isValid() {
         return this.pattern.test(this.value)
+      },
+
+      validClass() {
+        return this.isValid
           ? 'fa-check-circle'
           : 'fa-times-circle';
       }
@@ -40,11 +44,13 @@
     methods: {
       onInput(e) {
         this.activated = true;
+        this.$emit('update:value', e.target.value);
+      }
+    },
 
-        this.$emit('change-value', {
-          value: e.target.value, 
-          valid: this.pattern.test(e.target.value)
-        });
+    watch: {
+      isValid() {
+        this.$emit('change-status', this.isValid)
       }
     }
   };

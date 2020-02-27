@@ -36,9 +36,9 @@
               v-for="(field, index) in info"
               v-bind:key="field.name"
               v-bind:name="field.name"
-              v-bind:value="field.value"
+              v-bind:value.sync="field.value"
               v-bind:pattern="field.pattern"
-              v-on:change-value="onInput(index, $event)"
+              v-on:change-status="statusChange(index, $event)"
             ></validate-field>
 
             <button class="btn btn_md" 
