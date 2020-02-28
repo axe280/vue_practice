@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <div class="test-wrapper" 
+            v-if="showForm"
+          >
+            <app-question
+              :type="getQuestion.type"
+              :title="getQuestion.title"
+              :answers="getQuestion.answers"
+              @update-input="update"
+            ></app-question>
+            
+            <button class="btn" 
+              type="button"
+              :disabled="btnDisabled"
+              @click="btnClick"
+            >Next question</button>
+          </div>
+
+          <table-data
+            v-else
+            :questions="questions"
+            :datainputs="dataInputs"
+          ></table-data>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
