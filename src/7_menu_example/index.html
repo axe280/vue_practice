@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <style>
+    .slide-menu-enter {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    .slide-menu-enter-active,
+    .slide-menu-leave-active {
+      transition: all 0.3s;
+    }
+    .slide-menu-leave-to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <nav class="head-navigation">
+            <button type="button"
+            class="btn btn_sm"
+            @click="menuOpened = !menuOpened"
+            >
+              {{ !menuOpened ? 'Open' : 'Close'}} menu
+            </button>
+
+            <transition name="slide-menu">
+              <app-menu
+                v-show="menuOpened"
+                :menu-items="menuData"
+              ></app-menu>
+            </transition>
+          </nav>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
