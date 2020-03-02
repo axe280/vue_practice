@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <div class="services-bl">
+            <div class="services-bl__tt">Services</div>
+            <transition appear
+              enter-active-class="animated flipInX">
+              <ul class="services-list">
+                <li v-for="(service, index) in services"
+                  :key="index"
+                  :class="{active: service.active}"
+                  @click="toggleActive(service)"
+                >
+                  <span>{{ service.name }}</span>
+                  <span>{{ priceFormat(service.price) }}</span>
+                </li>
+              </ul>
+            </transition>
+
+            <div class="services-total">
+              Total: {{ priceFormat(totalPrice) }}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
