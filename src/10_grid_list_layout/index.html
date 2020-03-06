@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <div class="articles-bl">
+            <h3>My Current Top 4 Travel Blogs</h3>
+            <div class="articles-bar">
+              <button type="button"
+              :class="{active: gridType}"
+              @click="layout = 'grid'"
+              >✜</button>
+              <button type="button"
+                :class="{active: listType}"
+                @click="layout = 'list'"
+              >☰</button>
+            </div>
+
+            <ul :class="typeList">
+              <li v-for="(article, index) in articles"
+                :key="index"
+              >
+                <keep-alive>
+                  <component :is="layout + '-article'"
+                    :url="article.url"
+                    :image="article.image"
+                    :title="article.title"
+                  ></component>
+                </keep-alive>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
