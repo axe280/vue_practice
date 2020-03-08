@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <style>
+    .list-enter {
+      opacity: 0;
+    }
+
+    .list-enter-active {
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <div class="table-pagination">
+            <table>
+              <thead>
+                <tr>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>User Id</th>
+                </tr>
+                <tr v-for="user in displayUsers">
+                  <td>{{user.first}}</td>
+                  <td>{{user.last}}</td>
+                  <td>{{user.sufix}}</td>
+                </tr>
+              </thead>
+            </table>
+
+            <nav class="pagination">
+              <ul>
+                <li v-if="currentPage != 1">
+                  <button type="button"
+                    @click="reducePage"
+                  >Previous</button>
+                </li>
+
+                <li v-for="page in paginPages"
+                  :class="{active: page.activeClass}"
+                >
+                  <button type="button"
+                    @click="activatePage(page)"
+                  >{{page.pageNumber}}</button>
+                </li>
+
+                <li v-if="currentPage < pages.length">
+                  <button type="button"
+                    @click="increasePage"
+                  >Next</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+</body>
+
+</html>
