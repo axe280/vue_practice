@@ -1,6 +1,9 @@
+import shop from '../../api/shop'
+
 // hash [{ id, quantity }]
 const state = {
-  items: []
+  items: [],
+  checkoutStatus: null
 }
 
 const getters = {
@@ -25,6 +28,8 @@ const getters = {
 
 const actions = {
   addProductToCart({ state, commit }, product) {
+    state.checkoutStatus = null
+    
     if (product.inventory > 0) {
       const cartItem = state.items.find(({id}) => id === product.id)
 
@@ -37,6 +42,22 @@ const actions = {
       // remove 1 item from stock
       commit('products/decrementProductInventory', {id: product.id}, {root: true})
     }
+  },
+
+  checkout({ state, commit }, products) {
+    const cartItems = [...state.items]
+
+    commit('setCheckoutStatus', null)
+    commit('setItems', { items: [] })
+
+    shop.buyProducts(
+      products,
+      () => commit('setCheckoutStatus', 'succesful'),
+      () => {
+        commit('setCheckoutStatus', 'faild'),
+        commit('setItems', { items: cartItems })
+      }
+    )
   }
 }
 
@@ -51,6 +72,14 @@ const mutations = {
   incrementItemQuantity(state, { id }) {
     const cartItem = state.items.find(item => item.id === id)
     cartItem.quantity++
+  },
+
+  setCheckoutStatus(state, status) {
+    state.checkoutStatus = status
+  },
+
+  setItems(state, { items }) {
+    state.items = items
   }
 }
 

@@ -11,19 +11,37 @@
     </ul>
 
     <p class="d-cart__total">Total price: {{ total.toFixed(2) }} $</p>
+    <div class="d-cart__checkout">
+      <button class="btn"
+        :disabled="!products.length"
+        @click="checkout(products)"
+      >
+        Checkout
+      </button>
+    </div>
+    <p v-if="checkoutStatus">Checout: {{ checkoutStatus }}</p>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 
 export default {
   computed: {
+    ...mapState('cart', [
+      'checkoutStatus'
+    ]),
     ...mapGetters('cart', {
       products: 'cartProducts',
       total: 'cartTotalPrice'
     })
+  },
+
+  methods: {
+    checkout(products) {
+      this.$store.dispatch('cart/checkout', products)
+    }
   }
 }
 </script>

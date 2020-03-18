@@ -8,6 +8,7 @@
       >
         <h3>{{ product.title }}</h3>
         <div class="d-product-item__price">{{ product.price }} $</div>
+        <div class="d-product-item__stock">in stock: {{ product.inventory }}</div>
         <button class="btn"
           :disabled="!product.inventory"
           @click="addProductToCart(product)"
