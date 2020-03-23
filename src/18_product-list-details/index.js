@@ -12,6 +12,7 @@ window.Vue = require('vue')
 
 import PCatalog from "./components/P-catalog.vue"
 import PDetails from "./components/P-details.vue"
+import PForm from "./components/P-form.vue"
 
 // Vue init
 const app = new Vue({

@@ -24,10 +24,6 @@ export default {
     productService.$on("viewDetails", selectedProduct => {
       this.product = selectedProduct
     })
-  },
-
-  methods: {
-   
   }
 }
 </script>

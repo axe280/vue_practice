@@ -35,6 +35,16 @@ export default new Vue({
     currentProduct(id) {
       let product = _.find(this.products, {id: id})
       this.$emit('viewDetails', product)
+    },
+
+    addProduct({ name, price, info }) {
+      let id = this.products[this.products.length - 1].id + 1
+      this.products.push({
+        id,
+        name,
+        price,
+        info
+      })
     }
   }
 })
