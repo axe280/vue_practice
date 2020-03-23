@@ -11,7 +11,23 @@
 
 
 <script>
+import productService from "../js/productsService.js";
+
 export default {
-  props: ['product']
+  data() {
+    return {
+      product: {}
+    }
+  },
+
+  created() {
+    productService.$on("viewDetails", selectedProduct => {
+      this.product = selectedProduct
+    })
+  },
+
+  methods: {
+   
+  }
 }
 </script>

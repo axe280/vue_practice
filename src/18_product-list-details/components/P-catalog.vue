@@ -7,7 +7,7 @@
       <h4>{{ product.name }}</h4>
       <h5>{{ product.price }} $</h5>
       <button class="btn"
-        @click="idToUp(product.id)"
+        @click="findProduct(product.id)"
       >View details</button>
     </div>
   </div>
@@ -15,11 +15,22 @@
 
 
 <script>
+import productService from "../js/productsService.js";
+
 export default {
-  props: ['products'],
+  data() {
+    return {
+      products: []
+    }
+  },
+
+  created() {
+    this.products = productService.products
+  },
+
   methods: {
-    idToUp(id) {
-      this.$emit('get-product-id', id)
+    findProduct(id) {
+      productService.currentProduct(id)
     }
   }
 }
