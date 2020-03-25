@@ -14,9 +14,12 @@ import PCatalog from "./components/P-catalog.vue"
 import PDetails from "./components/P-details.vue"
 import PForm from "./components/P-form.vue"
 
+import router from './routes.js'
+
 // Vue init
 const app = new Vue({
   el: '#app',
+  router,
   components: {
     PCatalog,
     PDetails,
